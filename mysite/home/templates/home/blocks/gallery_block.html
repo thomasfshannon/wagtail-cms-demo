@@ -1,0 +1,5 @@
+{% for item in block.item %}
+  {{ item.title }}
+  {{ item.description }}
+  <img src="{{ item.image.file.url }}" />
+{% endfor %}

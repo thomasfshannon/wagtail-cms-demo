@@ -1,3 +1,7 @@
 env
 mysite/db.sqlite3
 *.pyc
+*.DS_Store
+.vscode
+mysite/media/images/
+mysite/media/original_images

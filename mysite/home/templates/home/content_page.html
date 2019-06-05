@@ -1,0 +1,5 @@
+{% for child in self.body %}
+  {% if child.block_type == 'gallery' %}
+    {% include "home/blocks/gallery_block.html" with block=child.value %}
+  {% endif %}
+{% endfor %}
