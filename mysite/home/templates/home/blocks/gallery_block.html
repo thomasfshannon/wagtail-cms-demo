@@ -1,5 +1,14 @@
-{% for item in block.item %}
-  {{ item.title }}
-  {{ item.description }}
-  <img src="{{ item.image.file.url }}" />
-{% endfor %}
+{% load wagtailcore_tags %}
+<div class="gallery-wrapper">
+  <div class="gallery-component">
+  {% for item in block.item %}
+    <div class="gallery-slide">
+      <div class="gallery-slide-inner">
+        <h1>{{ item.title }}</h2>
+        {{ item.description | richtext }}
+        <img src="{{ item.image.file.url }}" />
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>

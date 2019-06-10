@@ -3,3 +3,45 @@
     {% include "home/blocks/gallery_block.html" with block=child.value %}
   {% endif %}
 {% endfor %}
+
+{% block extra_css %}
+  <style>
+    body, html {
+      margin: 0;
+    }
+    .gallery-slide {
+      display: flex;
+      width: 100%;
+    }
+
+    .gallery-slide-inner {
+      margin: 0 auto;
+    }
+
+    .gallery-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .gallery-component {
+      width: 200%;
+      display: flex;
+    }
+  </style>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    (function () {
+      var galleryModule = {
+        galleries: [],
+        init: function () {
+          this.galleries = document.getElementsByClassName('gallery-component');
+          if (this.galleries.length !== 0) {
+            console.log(this.galleries);
+          }
+        }
+      }
+    })
+  </script>
+{% endblock %}
