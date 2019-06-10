@@ -1,8 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
 {% for child in self.body %}
   {% if child.block_type == 'gallery' %}
     {% include "home/blocks/gallery_block.html" with block=child.value %}
   {% endif %}
 {% endfor %}
+{% endblock %}
 
 {% block extra_css %}
   <style>
@@ -10,12 +13,11 @@
       margin: 0;
     }
     .gallery-slide {
-      display: flex;
       width: 100%;
     }
 
     .gallery-slide-inner {
-      margin: 0 auto;
+      text-align: center;
     }
 
     .gallery-wrapper {
@@ -23,25 +25,23 @@
       overflow: hidden;
     }
 
-    .gallery-component {
-      width: 200%;
-      display: flex;
+    .hidden {
+      display: none;
     }
   </style>
 {% endblock %}
 
 {% block extra_js %}
   <script>
-    (function () {
-      var galleryModule = {
-        galleries: [],
-        init: function () {
-          this.galleries = document.getElementsByClassName('gallery-component');
-          if (this.galleries.length !== 0) {
-            console.log(this.galleries);
-          }
-        }
-      }
-    })
+    $(document).ready(function () {
+      var i = 0;
+      var $slide = $('.gallery-slide');
+      $slide.addClass('hidden');
+      $slide.addClass('hidden').eq(0).removeClass('hidden');
+      setInterval(function () {
+        $slide.addClass('hidden').eq(i).removeClass('hidden');
+        i = i == $slide.length - 1 ? 0 : i + 1;
+      }, 1500);
+    });
   </script>
 {% endblock %}

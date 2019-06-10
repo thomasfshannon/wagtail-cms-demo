@@ -2,11 +2,11 @@
 <div class="gallery-wrapper">
   <div class="gallery-component">
   {% for item in block.item %}
-    <div class="gallery-slide">
+    <div class="gallery-slide hidden">
       <div class="gallery-slide-inner">
+        <img src="{{ item.image.file.url }}" />
         <h1>{{ item.title }}</h2>
         {{ item.description | richtext }}
-        <img src="{{ item.image.file.url }}" />
       </div>
     </div>
   {% endfor %}
