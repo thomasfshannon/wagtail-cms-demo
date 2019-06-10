@@ -3,6 +3,10 @@
 {% for child in self.body %}
   {% if child.block_type == 'gallery' %}
     {% include "home/blocks/gallery_block.html" with block=child.value %}
+
+    {% elif child.block_type == 'contact_form' %}
+      {% include "home/blocks/contact_us_block.html" %}
+    {% else %}
   {% endif %}
 {% endfor %}
 {% endblock %}
@@ -38,12 +42,27 @@
     $(document).ready(function () {
       var i = 0;
       var $slide = $('.gallery-slide');
-      $slide.addClass('hidden');
-      $slide.addClass('hidden').eq(0).removeClass('hidden');
+      $slide.eq(0).removeClass('hidden');
       setInterval(function () {
         $slide.addClass('hidden').eq(i).removeClass('hidden');
         i = i == $slide.length - 1 ? 0 : i + 1;
       }, 1500);
+
+      function createFormObject(id) {
+        return $(id).serializeArray().reduce((o, item) => {
+          o[item.name] = item.value;
+          return o;
+        }, {});
+      }
+
+      // form submit code
+      $('.contact-us-form').submit(function (e) {
+        e.preventDefault();
+        var data = createFormObject('.contact-us-form');
+        $.post('/contact/test/', data).then(resp => console.log(resp));
+      });
+
     });
+    
   </script>
 {% endblock %}
