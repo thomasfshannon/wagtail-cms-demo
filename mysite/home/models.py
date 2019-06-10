@@ -6,10 +6,11 @@ from .streamfields.common import CommonBlock
 class HomePage(Page):
     pass
 
-# creates a content page w/ general stream block
+# creates a content page w/ general stream block of reusable blocks
 class ContentPage(Page):
     body = StreamField(CommonBlock, blank=True)
-
+    
+    # panels to show on the page
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
     ]
