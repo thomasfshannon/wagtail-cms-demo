@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+--- words on page ---
+{% for translation in page.translations.all %}
+page: {{ translation.page }}
+{% for words in translation.body %}
+-----{{ words.value }}------
+{% endfor %}
+{% endfor %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  {% if page.translations.all %}
+      window.localizations = {
+    {% for translation in page.translations.all %}
+      '{{ translation.page }}': {
+        {% for words in translation.body %}
+        '{{ words.value.word }}': { en: '{{ words.value.word }}', sp: '{{ words.value.sp }}' },
+        {% endfor %}
+        {% endfor %}
+      }
+    };
+{% endif %}
+</script>
+{% endblock %}

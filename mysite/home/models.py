@@ -3,6 +3,7 @@ from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core.fields import StreamField
 from .streamfields.common import CommonBlock
+from .snippets import Translation
 class HomePage(Page):
     pass
 
@@ -14,3 +15,6 @@ class ContentPage(Page):
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
     ]
+
+class SinglePageApp(Page):
+    translations = Translation.objects.all()
