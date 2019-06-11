@@ -8,9 +8,11 @@ from wagtail.core import blocks
 class WordTranslationBlock(blocks.StreamBlock):
     translations = blocks.StructBlock([
         ('word', blocks.CharBlock(max_length=255, required=True)),
-        ('sp', blocks.CharBlock(max_length=255))
+        ('en', blocks.CharBlock(max_length=255)),
+        ('sp', blocks.CharBlock(max_length=255)),
+        ('fr', blocks.CharBlock(max_length=255))
     ])
-    
+
 @register_snippet
 class Translation(models.Model):
     page = models.CharField(max_length=255, blank=False)
