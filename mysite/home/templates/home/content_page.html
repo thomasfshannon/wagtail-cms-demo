@@ -59,7 +59,10 @@
       $('.contact-us-form').submit(function (e) {
         e.preventDefault();
         var data = createFormObject('.contact-us-form');
-        $.post('/contact/test/', data).then(resp => console.log(resp));
+        $.post('/contact/test/', data).then(resp => {
+          $('.contact-us-form').trigger('reset');
+          $('.contact-us-form-success').removeClass('hidden');
+        });
       });
 
     });
