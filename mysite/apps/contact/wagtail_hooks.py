@@ -2,6 +2,7 @@ from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register)
 from .models import ContactSubmission
 
+# register contact submission as admin view
 class ContactAdmin(ModelAdmin):
     model = ContactSubmission
     menu_label = 'Submission'
