@@ -1,5 +1,6 @@
 env
 mysite/db.sqlite3
+*db.sqlite3
 *.pyc
 *.DS_Store
 .vscode
